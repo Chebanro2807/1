@@ -6,74 +6,71 @@
     <title>Main</title>
 </head>
 <body>
-    <p>1</p>
     <form>
-        <fieldset>
-          <legend>Personal informaition</legend>
-            <p><label for="Surname">Surname </label>
-                <input type="text" id="surname"></p>
-            <p><label for="Name">Name </label>
-                <input type="text" id="Name"></p>
-            <p><label for="Age">How old are you? </label>
-                <input type="number" min="1" max="150" id="Age"></p>
-            <p><label for="Date">Full date of birth: </label>
-                <input type="date" id="Date"></p>
-            <p><label for="Accept">I accept the term of the agreement </label>
-                <input type="checkbox" id="Accept"></p>
-          </fieldset>
-      </form>
+            <fieldset>
+                <legend>Personal informaition</legend>
+                    <div><label for="Surname">Surname </label>
+                        <input type="text" id="surname"></div>
+                    <div><label for="Name">Name </label>
+                        <input type="text" id="Name"></div>
+                    <div><label for="Age">How old are you? </label>
+                        <input type="number" min="1" max="150" id="Age"></div>
+                    <div><label for="Date">Full date of birth: </label>
+                        <input type="date" id="Date"></div>
+                    <div><label for="Accept">I accept the term of the agreement </label>
+                        <input type="checkbox" id="Accept"></div>
+            </fieldset>
+      
+            <fieldset>
+                <legend>Registration</legend>
+                    <div><label for="Email">E-mail </label>
+                        <input type="email" placeholder="email@example.com" id="Email"></div>
+                    <div><label for="Password">Password </label>
+                        <input type="password" id="Password"></div>
+            </fieldset>
+      
 
-      <form>
-        <fieldset>
-            <legend>Registration</legend>
-            <p><label for="Email">E-mail </label>
-                <input type="email" placeholder="email@example.com" id="Email"></p>
-            <p><label for="Password">Password </label>
-                <input type="password" id="Password"></p>
-        </fieldset>
-      </form>
 
-      <form>
-        <fieldset>
-            <legend>An interesting facts about you!</legend>
-            <p><label for="Cats">Do you love cats? </label>
-                <label>
-                    <input type="radio" name="status">Yes
-                </label>
-                <label>
-                    <input type="radio" name="status">No
-                </label>
-            <p><label for="color">What is your favorite color? </label>
-                <input type="color" id="color"></p>
-            <p><label for="bed">What do you go to bed? </label>
-                <input type="time" id="bed"></p>  
-            <p><label for="car">What is your favorite brand of cars? </label>
-                <Select>
-                    <option>BMV</option>
-                    <option>Audi</option>
-                    <option>Lada</option> 
-                </Select></p>  
-            <p><label for="work">How are you rate your work? </label>
-                <input type="range" min="0" max="100" id="work"></p>  
-        </fieldset>
-      </form>
+            <fieldset>
+                <legend>An interesting facts about you!</legend>
+                    <div><label for="Cats">Do you love cats? </label>
+                        <label>
+                            <input type="radio" name="status">Yes
+                        </label>
+                        <label>
+                            <input type="radio" name="status">No
+                        </label>
+                    <div><label for="color">What is your favorite color? </label>
+                        <input type="color" id="color"></div>
+                    <div><label for="bed">What do you go to bed? </label>
+                        <input type="time" id="bed"></div>  
+                    <div><label for="car">What is your favorite brand of cars? </label>
+                        <Select>
+                            <option>BMV</option>
+                            <option>Audi</option>
+                            <option>Lada</option> 
+                        </Select></div>  
+                    <div><label for="work">How are you rate your work? </label>
+                        <input type="range" min="0" max="100" id="work"><div> 
+            </fieldset>
 
-      <form>
-        <fieldset>
-            <legend>Additional info:</legend>
-            <p><label for="Comments">Comments </label>
-                <textarea></textarea></p>
-            <p><label for="recommend">Would you recommend us? </label>
-                <Select>
-                    <option>Yes</option>
-                    <option>No</option> 
-                </Select></p>  
-        </fieldset>
-      </form>
-        <div>
-            <button>
-            Submit
-            </button>
-        </div>
+
+            <fieldset>
+                <legend>Additional info:</legend>
+                <div><label for="Comments">Comments </label>
+                    <textarea></textarea><div>
+                    <div><label for="recommend">Would you recommend us? </label>
+                    <Select>
+                        <option>Yes</option>
+                        <option>No</option> 
+                    </Select><div> 
+            </fieldset>
+
+            <div>
+                <button>
+                Submit
+                </button>
+            </div>
+    </form>
 </body>
 </html>
