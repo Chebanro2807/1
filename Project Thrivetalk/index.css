@@ -1,8 +1,43 @@
 
-.WHO {
-    width: 1117px;
-    height: 840px;
-    left: 0px;
-    top: 0px;
-    background: #F4F9E2;
+.info{
+    position: relative;
+    width: 1440px;
+    height: 629px;
+}
+
+.logo{
+    width: 126.4px;
+    height: 40px;
+    padding-top: 38px;
+    padding-left: 52px;
+}
+
+.made{
+    width: 60px;
+    height: 18px;
+    padding-left: 233px;
+    padding-top: 217px;
+    font-size: 16px;
+    color: #A259FF;
+}
+h1{
+    display: flex;
+    width: 576px;
+    height: 86px;
+    padding-left: 412px;
+    padding-top: 196px;
+    color: #292929;
+}
+
+h2{
+    display: flex;
+    width: 390px;
+    height: 36px;
+    left: 414px;
+    padding-top: 20px;
+
+    font-family: Larsseit;
+    font-size: 32px;
+    line-height: 34px;
+    color: #4F4F4F;
 }
