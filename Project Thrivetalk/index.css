@@ -1,43 +1,77 @@
-
 .info{
-    position: relative;
-    width: 1440px;
-    height: 629px;
+    width: 100%;
+    height: 100%;
+    background: white no-repeat top;
+    background-size: cover;
 }
 
-.logo{
+.info img{
+    display: block;
     width: 126.4px;
-    height: 40px;
-    padding-top: 38px;
-    padding-left: 52px;
+    padding: 38px 0px 0px 52px;
 }
 
-.made{
-    width: 60px;
-    height: 18px;
-    padding-left: 233px;
-    padding-top: 217px;
-    font-size: 16px;
+
+.info .container {
+    display: flex;
+    Align-items: center;
+    justify-content:space-around;
+}
+.made1{
+    font-family: Larsseit;
+    letter-spacing: -0.006em;
     color: #A259FF;
 }
-h1{
+
+.info .container .made2{
     display: flex;
-    width: 576px;
-    height: 86px;
-    padding-left: 412px;
+    Flex-direction: column;
     padding-top: 196px;
+    padding-left: 119px;
+}
+
+h1{
+    margin: 0 ;
+    font-family: Larsseit;
+    font-size: 72px;
+    line-height: 76px;
+    letter-spacing: -0.006em;
     color: #292929;
 }
 
-h2{
-    display: flex;
-    width: 390px;
-    height: 36px;
-    left: 414px;
+h2 {
+    margin: 0 ;
     padding-top: 20px;
-
     font-family: Larsseit;
     font-size: 32px;
     line-height: 34px;
+    letter-spacing: -0.006em;
     color: #4F4F4F;
+}
+
+ul {
+    display: flex;
+    justify-content:start;
+    padding-left: 0px;
+}
+li {
+    list-style-type: none; 
+    font-family: Larsseit;
+    font-size: 24px;
+    line-height: 25px;
+    letter-spacing: -0.006em;
+
+    color: #1ABCFE;
+}
+
+li:not(:first-child) {
+    padding-left: 70px;
+}
+
+.like{
+    padding-top: 123px;
+    margin-left: 414px;
+    font-size: 20px;
+    line-height: 21px;
+    width: 637px;
 }
