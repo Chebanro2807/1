@@ -14,19 +14,6 @@ body {
     border-bottom: 2px solid #F3F3F3;
 }
 
-.day-view__title-actions {
-    position: absolute;
-    right: 0px;
-    display: flex;
-    
-    width: 36px;
-    height: 36px;
-
-}
-
-.day-view__search {
-    padding-left: 59 px;
-}
 
 .day-view__day-text {
     font-weight: 500;
@@ -108,4 +95,55 @@ body {
 .day-view__event--management {
     background: rgba(238, 165, 124, 0.15);
     border-color: #EEA57C;
+}
+
+.day-view__search {
+    background-color: white;
+    border: 0
+}
+
+.day-view__layout{
+    background-color: white;
+    border: 0
+}
+
+.day-view__day-text{
+    position: relative;
+}
+
+.day-view__search{
+    position: absolute;
+    right:227px
+}
+
+.day-view__layout{
+    position: absolute;
+    right:139px
+}
+
+.day-view__search:hover{
+    background-color: rgb(8, 23, 235);
+}
+.day-view__layout:hover{
+    background-color: rgb(8, 23, 235);
+}
+
+.calendar__body {
+    background-color: rgba(42, 46, 65, 0.7);
+    width: 100%;
+}
+
+.calendarBodyMonth {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    list-style-type: none; 
+}
+
+.calendarbody .calendarBodyMonth ul{
+    margin-left: 0; 
+    padding-left: 0; 
 }
