@@ -7,127 +7,144 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="day-view">
-        <div class="day-view__title">
-            <div class="day-view__day-text">22 March 2018</div>
-            <div class="day-view__title-actions">
-                <button class="day-view__search" aria-label="Search">
-                    <img src="../Calendar/img/search.svg" alt="search">
-                </button>
-                <button class="day-view__layout" aria-label="Layout">
-                    <img src="../Calendar/img/box.svg" alt="search">
-                </button>
+<div class="main">
+        <div class="day-view">
+            <div class="day-view__title">
+                <div class="day-view__day-text">22 March 2018</div>
+                <div class="day-view__title-actions">
+                    <button class="day-view__search" aria-label="Search">
+                        <img src="../Calendar/img/search.svg" alt="search">
+                    </button>
+                    <button class="day-view__layout" aria-label="Layout">
+                        <img src="../Calendar/img/box.svg" alt="search">
+                    </button>
+                </div>
             </div>
+            <ul class="day-view__time-list">
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">09:00</div>
+                    <div class="day-view__event day-view__event--finance" style="height: 100%;">
+                        Meet Sophia in airport
+                    </div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">10:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">11:00</div>
+                    <div class="day-view__event day-view__event--workshop" style="height: 250%;">
+                        Studio workshop
+                    </div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">12:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">13:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">14:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">15:00</div>
+                    <div class="day-view__event day-view__event--management" style="height: 200%;">
+                        Design workshop with Johny Ive
+                    </div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">16:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">17:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">18:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">19:00</div>
+                </li>
+                <li class="day-view__time-row">
+                    <div class="day-view__time-key">20:00</div>
+                </li>
+            </ul>
         </div>
-        <ul class="day-view__time-list">
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">09:00</div>
-                <div class="day-view__event day-view__event--finance" style="height: 100%;">
-                    Meet Sophia in airport
-                </div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">10:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">11:00</div>
-                <div class="day-view__event day-view__event--workshop" style="height: 250%;">
-                    Studio workshop
-                </div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">12:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">13:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">14:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">15:00</div>
-                <div class="day-view__event day-view__event--management" style="height: 200%;">
-                    Design workshop with Johny Ive
-                </div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">16:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">17:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">18:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">19:00</div>
-            </li>
-            <li class="day-view__time-row">
-                <div class="day-view__time-key">20:00</div>
-            </li>
-        </ul>
+
+        <div class="calendarbody">
+                <ul class="calendarBodyMonth slash">
+                    <li class="prev">
+                        <img src="../Calendar/img/Left.svg" alt="left">
+                    </li>
+                    <li class="next">
+                        <img src="../Calendar/img/Right.svg" alt="right">
+                    </li>
+                    <li class="month">March 2018</li>
+                </ul>
+
+                <ul class="calendardays">
+                    <li>M</li>
+                    <li>T</li>
+                    <li>W</li>
+                    <li>T</li>
+                    <li>F</li>
+                    <li>Sat</li>
+                    <li>Sun</li>
+                </ul>
+
+
+                <ul class="calendardates slash-second">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                    <li>11</li>
+                    <li>12</li>
+                    <li>13</li>
+                    <li>14</li>
+                    <li><span class="active">15</span></li>
+                    <li>16</li>
+                    <li>17</li>
+                    <li>18</li>
+                    <li>19</li>
+                    <li>20</li>
+                    <li>21</li>
+                    <li>22</li>
+                    <li>23</li>
+                    <li>24</li>
+                    <li>25</li>
+                    <li>26</li>
+                    <li>27</li>
+                    <li>28</li>
+                    <li>29</li>
+                    <li>30</li>
+                    <li>31</li>
+                    <li><span class="passive">1</span></li>
+                    <li><span class="passive">2</span></li>
+                    <li><span class="passive">3</span></li>
+                    <li><span class="passive">4</span></li>
+                </ul>
+
+        <div class="category">
+            Your categories
+        </div>
+        <div class="pins">
+            <button class="finance">
+                FINANCE
+            </button>
+            <button class="managment">
+                MANAGEMENT
+            </button>
+            <button class="design">
+                DESIGN
+            </button>
+        </div>
+
+        </div>
     </div>
-
-    <div class="calendarbody">
-            <ul class="calendarBodyMonth">
-                <li class="prev">
-                    <img src="../Calendar/img/Left.svg" alt="left">
-                </li>
-                <li class="next">
-                    <img src="../Calendar/img/Right.svg" alt="right">
-                </li>
-                <li>March 2018</li>
-            </ul>
-
-            <ul class="calendardays">
-                <li>Mo</li>
-                <li>Tu</li>
-                <li>We</li>
-                <li>Th</li>
-                <li>Fr</li>
-                <li>Sa</li>
-                <li>Su</li>
-            </ul>
-
-
-            <ul class="calendardates">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-                <li>7</li>
-                <li>8</li>
-                <li>9</li>
-                <li>10</li>
-                <li>11</li>
-                <li>12</li>
-                <li>13</li>
-                <li>14</li>
-                <li>15</li>
-                <li>16</li>
-                <li>17</li>
-                <li>18</li>
-                <li>19</li>
-                <li>20</li>
-                <li>21</li>
-                <li>22</li>
-                <li>23</li>
-                <li>24</li>
-                <li>25</li>
-                <li>26</li>
-                <li>27</li>
-                <li>28</li>
-                <li>29</li>
-                <li>30</li>
-                <li>31</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-              </ul>
-    </div>
-
 </body>
 </html>

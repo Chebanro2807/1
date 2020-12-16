@@ -107,7 +107,7 @@ body {
     border: 0
 }
 
-.day-view__day-text{
+.day-view {
     position: relative;
 }
 
@@ -128,22 +128,183 @@ body {
     background-color: rgb(8, 23, 235);
 }
 
-.calendar__body {
-    background-color: rgba(42, 46, 65, 0.7);
-    width: 100%;
-}
-
-.calendarBodyMonth {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
 li {
     list-style-type: none; 
 }
 
-.calendarbody .calendarBodyMonth ul{
-    margin-left: 0; 
-    padding-left: 0; 
+.main {
+    display: flex;
+    z-index: 1;
+
+}
+
+.day-view {
+    width: 70%;
+}
+
+.calendarbody{
+    width: 30%;
+    background-color:rgba(42, 46, 65, 0.7); ;
+}
+
+.calendarBodyMonth {
+    position: relative;
+    height: 214px;
+}
+
+.prev {
+    position: absolute;
+    left: 99px;
+    top:87px;
+    bottom: 91px;
+}
+
+.next {
+    position: absolute;
+    right: 91px;
+    top:87px;
+    bottom: 91px;
+}
+
+.month {
+    position: absolute;
+    top: 84px;
+    bottom: 87px;
+    left: 0;
+    display: block;
+    width: 320px;
+    left: 50%;
+    transform: translateX(-25%);
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 42px;
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+.calendarBodyMonth{
+    position: relative;
+}
+
+.slash::after{
+    content: '';
+    position: absolute;
+    width: 599px;
+    opacity: 0.17;
+    border-top: 2px solid #000000;
+    box-sizing: border-box;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calendardays {
+    margin: 0;
+    padding: 45px 101px 0 101PX;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.6;
+}
+
+.calendardays li {
+    display: inline-block;
+    text-align: center;
+    color: #FFFFFF;
+    min-width: 86px;
+    height: 31px;
+}
+
+.calendardates {
+    
+    margin: 0;
+    padding: 48px 102px 124px 99px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 29px;
+    line-height: 34px;
+    z-index: 1;
+}
+        
+.calendardates li {
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    color: #FFFFFF;
+    width: 86px;
+    height: 34px;
+    padding-top: 96px;
+    z-index: 1;
+}
+
+.calendardates{
+    position: relative;
+}
+
+.slash-second::after{
+    content: '';
+    position: absolute;
+    width: 599px;
+    opacity: 0.17;
+    border-top: 2px solid #000000;
+    box-sizing: border-box;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calendardates .active {
+    z-index: 10;
+    background: #3C82F9; 
+    padding: 30px;
+    border-radius: 100%;
+}
+
+.calendardates .passive {
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+}
+
+.category {
+    padding: 107px 0 0 99px;
+    width: 183px;
+    height: 31px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.finance {
+    width: 285px;
+    height: 80px;
+    background: #8576ED;
+    border-radius: 12px;
+}
+
+.managment {
+    margin-left: 29px;
+    width: 285px;
+    height: 80px;
+    background: #F39946;
+    border-radius: 12px;
+}
+
+.design {
+    margin-top:30px;
+    width: 285px;
+    height: 80px;
+    background: #FF467E;
+    border-radius: 12px;
+}
+
+.pins {
+    padding:42px 102px 0  99px;
+    display: flex;
+    flex-wrap: wrap;
 }
