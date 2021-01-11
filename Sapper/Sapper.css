@@ -1,0 +1,41 @@
+.sapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mines {
+    text-align: center;
+}
+
+.cross__board {
+    display: flex;
+    flex-wrap: wrap;
+
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+}
+
+.cross__board-item {
+    position: relative;
+    flex: 1 0 12.5%;
+
+    padding-top: 12.5%;
+    height: 0;
+
+    border: 1px solid black;
+
+    box-sizing: border-box;
+}
+
+.cross__board-item:hover {
+    background-color:grey;
+    cursor: pointer;
+}
