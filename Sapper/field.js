@@ -6,7 +6,7 @@ function fieldInit() {
         squere.setAttribute("data-index", i );
         let bomb = document.createElement('img');
         bomb.className='bomb';
-        bomb.setAttribute("src", "../Sapper/img/bomb.png" );
+        bomb.setAttribute("src", "../Sapper/img/bomb.svg" );
         squere.append(bomb);
         _rootEl.append(squere);
         
