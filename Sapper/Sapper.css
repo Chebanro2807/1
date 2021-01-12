@@ -39,3 +39,8 @@
     background-color:grey;
     cursor: pointer;
 }
+
+
+.bomb {
+    width: 40px;
+}
