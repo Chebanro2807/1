@@ -34,9 +34,19 @@ Timer.prototype.start = function() {
     this.setState({
         startTime: Date.now (),
         started: true,
+        pause: false,
     });
     this._updateIntervalId = setInterval (this.render.bind(this), 1000)
 }
+
+Timer.prototype.pause = function() {
+    if (this._state.started) {
+        this.setState ({
+            pause: true
+        });
+        clearInterval (this._updateIntervalId);
+    }
+};
 
 Timer.prototype.render = function () {
     if (this._props.container){
@@ -44,12 +54,20 @@ Timer.prototype.render = function () {
     }
 }
 
+Timer.prototype.reset = function() {
+    this.setState({
+        startTime: null,
+        started: true,
+        pause: false,
+        timeShift: 0
+    });
+
+    clearInterval(this._upadateIntervalId);
+};
+
 const timer1 = new Timer({
     container: document.querySelector('.cross__timer')
 });
 
-console.log (timer1._state);
 timer1.start();
-console.log (timer1._state);
-
 
