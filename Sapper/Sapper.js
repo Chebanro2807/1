@@ -23,13 +23,16 @@ Sapper.prototype.bomb = function() {
 }
 
 Sapper.prototype.start = function() {
+    // console.log('start')
     this._fullGameTimer.start()
     this.checkPause()
     this._actionsEl.pause.removeAttribute("disabled")
     this._fullField.fieldInit()
-    this._cell = this._props.container.querySelectorAll('.cross__board-item')
-    // console.log('start')
-    console.log(this._cell.length)
+    this._cells = this._props.container.querySelectorAll('.cross__board-item')
+    //console.log(this._cells.length)
+    for (let i = 0; i < this._cells.length; i++) {
+        this._cells[i].addEventListener('click', this.checkCell.bind(this._cells[i]));
+    }
 };
 
 Sapper.prototype.pause = function() {
@@ -46,6 +49,13 @@ Sapper.prototype.checkPause = function(){
         this._actionsEl.pause.innerHTML = "Pause"
     }
 }
+
+Sapper.prototype.checkCell = function(cell){
+    console.log(cell);
+    console.log(cell.path);
+    // alert(cell.getAttribute("data-index"));
+}
+
 // Sapper.prototype.reset = function() {
 //     console.log("reset");
 //     this._fullGameTimer.start()
