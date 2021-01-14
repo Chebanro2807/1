@@ -15,3 +15,56 @@ Field.prototype.fieldInit = function() {
         this._props.container.append(squere);
     }
 }
+
+Field.prototype.fieldClean = function() {
+    let arr = document.querySelectorAll('.cross__board-item')
+    arr.forEach(function(cell){
+        cell.classList.remove("safeCell") // Мы убираем данный клас кажды раз когда заново создаем новую игру.
+        while (cell.firstChild) {
+            cell.removeChild(cell.firstChild); // Очищаем поля от картинок бомб.
+        }
+    })
+}
+
+
+
+Field.prototype.draw = function(cell, grass) {
+    if (grass === true){
+        let grass = document.createElement('img');
+        grass.className='grass';
+        grass.setAttribute("src", "../Sapper/img/grass.svg" );
+        cell.appendChild(grass); 
+    }
+    else {
+        let bomb = document.createElement('img');
+        bomb.className='bomb';
+        bomb.setAttribute("src", "../Sapper/img/bomb.svg" );
+        cell.appendChild(bomb); 
+    }
+    cell.classList.toggle("safeCell") // Добавили дополнительный класс в див.
+}
+
+Field.prototype.createRandomForBombs = function(max) { // С помощью push добавили в масив переменные.
+    let arr = []; // создал пустой масив
+    for (let i=0; i<max; i++){
+        let bompIndex = this.randomFieldIndex();  // Сгенерировали индекс ячейки для бомбы.
+        // console.log(bompIndex);
+        if (arr.includes(bompIndex)){
+            console.log(bompIndex)
+            i--;
+        } else {
+            arr.push(bompIndex) // Добавили значения инфдексов в масив. 
+        }
+    }
+    return arr
+}
+
+Field.prototype.randomFieldIndex = function() {
+    return Math.round(Math.random() * 64);
+}
+
+
+
+
+
+
