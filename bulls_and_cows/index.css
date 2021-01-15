@@ -1,0 +1,33 @@
+.cow{
+    width: 40px;
+    height: 40px;
+}
+
+.bull{
+    width: 40px;
+    height: 40px;
+}
+
+.User1 {
+    text-align: center;
+}
+
+
+.bulls_and_cows {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.table_vrap{
+    padding-top: 20px;
+}
+
+.button__start {
+    background-color: blue;
+}
+
+/* .bulls_and_cows_table {
+    max-width: 300px;
+} */
