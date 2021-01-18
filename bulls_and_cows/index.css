@@ -1,24 +1,27 @@
-body {
-    background: #d6eaf8;
-}
 
 .cow{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 
 .bull{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+}
+
+.bulls_and_cows{
+    min-width: 50px;
 }
 
 .User1 {
     text-align: center;
+    font-weight: bold;
 }
 
 .table_vrap{
     padding-top: 20px;
     width: 400px;
+    border: 0px;
 }
 
 .button__start {
@@ -40,17 +43,21 @@ body {
     color: white;
     padding: 6px 30px;
     margin: 10px 20px;
-    border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
-    background-image: linear-gradient(to right, #59b3d6 0%, #4830F0 51%, #59b3d6 100%);
+    background-image: linear-gradient(to right, #f0a249 0%, #da6e0a 51%, #f0a249 100%);
     background-size: 200% auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
     transition: .5s;
+    border: none;
+}
+
+.button__start:focus {
+    outline: none !important
 }
 
 .button__start:hover {
     background-position: right center;
+    border: none;
   }
 
 .turn {
@@ -59,11 +66,12 @@ body {
 
 .numbers {
     text-align: center;
+    font-weight: bold;
 }
 
 .number_all {
     height: 30px;
-    width: 60px;
+    width: 80px;
     text-align: center;
 }
 
@@ -74,12 +82,35 @@ body {
 
 .turns {
     text-align: center;
+    font-weight: bold;
 }
 
 .bulls_all{
     text-align: center;
+    width: 67px;
 }
 
 .cows_all{
     text-align: center;
+    width: 67px;
 }
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    }
+    th, td:first-child {
+    background:#d3853b ;
+    color: white;
+    padding: 10px 20px;
+    }
+    th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    }
+    td {
+    background: #ffe0b3;
+    }
