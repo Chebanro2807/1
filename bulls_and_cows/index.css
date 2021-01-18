@@ -1,3 +1,7 @@
+body {
+    background: #d6eaf8;
+}
+
 .cow{
     width: 40px;
     height: 40px;
@@ -12,24 +16,70 @@
     text-align: center;
 }
 
-
-.bulls_and_cows {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    width: 400 px;
-}
-
 .table_vrap{
     padding-top: 20px;
     width: 400px;
 }
 
 .button__start {
-    background-color: blue;
+    background-color: rgb(130, 219, 241);
 }
 
-/* .bulls_and_cows_table {
-    max-width: 300px;
-} */
+.bulls_and_cows_table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vrap_button__start{
+    text-align: center;
+}
+
+.button__start{
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    padding: 6px 30px;
+    margin: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #59b3d6 0%, #4830F0 51%, #59b3d6 100%);
+    background-size: 200% auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    transition: .5s;
+}
+
+.button__start:hover {
+    background-position: right center;
+  }
+
+.turn {
+    text-align: center;
+}
+
+.numbers {
+    text-align: center;
+}
+
+.number_all {
+    height: 30px;
+    width: 60px;
+    text-align: center;
+}
+
+.random__number{
+    width: 50px;
+    text-align: center;
+}
+
+.turns {
+    text-align: center;
+}
+
+.bulls_all{
+    text-align: center;
+}
+
+.cows_all{
+    text-align: center;
+}

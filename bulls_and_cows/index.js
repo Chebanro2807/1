@@ -21,12 +21,12 @@ BullsAndCows.prototype.randomNumberToString = function() {
 BullsAndCows.prototype.render = function() {
     if (this._props.container){
         this._props.container.innerText = this._string;
-        // console.log(this._string)
+        console.log(this._string)
     }
 }
 
 BullsAndCows.prototype.verification = function (check){
-    // console.log(check);
+    console.log(check);
     for (let i=0; i<4; i++){
         for(let j=i+1; j<4; j++){
             if (check[i]===check[j]){
@@ -82,11 +82,11 @@ BullsAndCows.prototype.createField = function () {
         columnTurn.className = 'turn';
         columnTurn.innerHTML = i+1;
         let columnNumber = document.createElement('td');
-        columnNumber.className = 'number_'+(i);
+        columnNumber.classList = 'number_all number_'+(i); // Добавлял общие классы для все колонок
         let columnBull = document.createElement('td');
-        columnBull.className = 'bull_'+(i);
+        columnBull.className = 'bulls_all bull_'+(i);
         let columnCow = document.createElement('td');
-        columnCow.className = 'cow_'+(i);
+        columnCow.className = 'cows_all cow_'+(i);
         row.append(columnTurn);
         row.append(columnNumber);
         row.append(columnBull);
@@ -113,7 +113,6 @@ BullsAndCows.prototype.createInputNumber = function (){
                 if (this._winGame){
                     alert('Ты выиграл(а)')
                     this.render();
-
                 } else if (this._currentTurn===10){
                     alert('Ты нубас')
                 }
