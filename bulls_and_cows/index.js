@@ -5,6 +5,7 @@ function BullsAndCows (props = {}){
     this.startGame = document.querySelector('.button__start');
     this.startGame.addEventListener('click',this.start.bind(this));
     this._currentTurn = 0;
+    this._winGame = false;
 }
 // Generate field
 BullsAndCows.prototype.randomNumber = function (){
@@ -20,7 +21,7 @@ BullsAndCows.prototype.randomNumberToString = function() {
 BullsAndCows.prototype.render = function() {
     if (this._props.container){
         this._props.container.innerText = this._string;
-        console.log(this._string)
+        // console.log(this._string)
     }
 }
 
@@ -49,10 +50,13 @@ BullsAndCows.prototype.checkBullsAndCows = function (usernumber) {
         if (usernumber[i]===this._string[i]){
             bulls++
         }
-        
     }
     console.log('быки =', bulls, 'коровы =',cows)
     this.drow(bulls, cows);
+    
+    if (bulls === 4){
+        this._winGame = true
+    }
 }
 
 BullsAndCows.prototype.drow = function (bullsQuantity, cowsQuantity){
@@ -63,9 +67,9 @@ BullsAndCows.prototype.drow = function (bullsQuantity, cowsQuantity){
 }
 
 BullsAndCows.prototype.start = function() {
+    this._winGame = false;
     this.fieldClean();
     this.randomNumberToString();
-    this.render();
     this._currentTurn = 0;
     this.createInputNumber();
 }
@@ -101,16 +105,22 @@ BullsAndCows.prototype.createInputNumber = function (){
     createInput.addEventListener('keypress', (event) => {
         if (event.keyCode ===13) {
             event.preventDefault()
+            createInput.value = createInput.value.padStart(4,'0')
             if (this.verification(createInput.value)) {
                 createInput.setAttribute('disabled','disabled')
                 this.checkBullsAndCows(createInput.value);
                 this._currentTurn++;
-                if (this._currentTurn===10){
-                    alert('Ты нубас')
+                if (this._winGame){
+                    alert('Ты выиграл(а)')
+                    this.render();
 
-                } else {
+                } else if (this._currentTurn===10){
+                    alert('Ты нубас')
+                }
+                else {
                     this.createInputNumber();
                 }
+
             } else {
                 alert('У вас повторяються цыфры. \n"1234" => Правильно, \n"1123" =>  Не верно. В данном случае дважди повторилось "1 и 1"')
             }
@@ -122,8 +132,20 @@ BullsAndCows.prototype.createInputNumber = function (){
 
 
 BullsAndCows.prototype.fieldClean = function() {
-
+    for (let i=0; i<=this._currentTurn; i++){
+        let cleanNumber = document.querySelector('.number_'+i);
+        while (cleanNumber.firstChild){
+            cleanNumber.removeChild(cleanNumber.firstChild);
+        }
+        let cleanBull = document.querySelector('.bull_'+i);
+        cleanBull.innerHTML = '';
+        let cleanCow = document.querySelector('.cow_'+i);
+        cleanCow.innerHTML = '';
+    }
+    this._props.container.innerText = '';
 }
+
+
 
 //------
 const bullsAndCowsGame = new BullsAndCows ({

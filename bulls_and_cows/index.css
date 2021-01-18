@@ -18,10 +18,12 @@
     justify-content: center;
     text-align: center;
     flex-direction: column;
+    width: 400 px;
 }
 
 .table_vrap{
     padding-top: 20px;
+    width: 400px;
 }
 
 .button__start {
