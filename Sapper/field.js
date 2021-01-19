@@ -20,9 +20,10 @@ Field.prototype.fieldClean = function() {
     let arr = document.querySelectorAll('.cross__board-item')
     arr.forEach(function(cell){
         cell.classList.remove("safeCell") // Мы убираем данный клас кажды раз когда заново создаем новую игру.
+        cell.removeAttribute("count")
         while (cell.firstChild) {
             cell.removeChild(cell.firstChild); // Очищаем поля от картинок бомб.
-        }
+        }        
     })
 }
 
@@ -30,10 +31,17 @@ Field.prototype.fieldClean = function() {
 
 Field.prototype.draw = function(cell, grass) {
     if (grass === true){
-        let grass = document.createElement('img');
-        grass.className='grass';
-        grass.setAttribute("src", "../Sapper/img/grass.svg" );
-        cell.appendChild(grass); 
+        if (cell.getAttribute('count') === null){
+            let grass = document.createElement('img');
+            grass.className='grass';
+            grass.setAttribute("src", "../Sapper/img/grass.svg" );
+            cell.appendChild(grass); 
+        } else {
+            let count = document.createElement('div');
+            count.className = 'count';
+            count.innerHTML = cell.getAttribute ('count');
+            cell.appendChild(count);
+        }
     }
     else {
         let bomb = document.createElement('img');

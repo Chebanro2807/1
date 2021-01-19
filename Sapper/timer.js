@@ -72,6 +72,7 @@ Timer.prototype.render = function () {
     }
 }
 
+
 // Timer.prototype.reset = function() {
 //     this.setState({
 //         startTime: null,
