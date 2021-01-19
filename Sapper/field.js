@@ -27,31 +27,6 @@ Field.prototype.fieldClean = function() {
     })
 }
 
-
-
-Field.prototype.draw = function(cell, grass) {
-    if (grass === true){
-        if (cell.getAttribute('count') === null){
-            let grass = document.createElement('img');
-            grass.className='grass';
-            grass.setAttribute("src", "../Sapper/img/grass.svg" );
-            cell.appendChild(grass); 
-        } else {
-            let count = document.createElement('div');
-            count.className = 'count';
-            count.innerHTML = cell.getAttribute ('count');
-            cell.appendChild(count);
-        }
-    }
-    else {
-        let bomb = document.createElement('img');
-        bomb.className='bomb';
-        bomb.setAttribute("src", "../Sapper/img/bomb.svg" );
-        cell.appendChild(bomb); 
-    }
-    cell.classList.toggle("safeCell") // Добавили дополнительный класс в див.
-}
-
 Field.prototype.createRandomForBombs = function(max) { // С помощью push добавили в масив переменные.
     let arr = []; // создал пустой масив
     for (let i=0; i<max; i++){
@@ -71,8 +46,26 @@ Field.prototype.randomFieldIndex = function() {
     return Math.round(Math.random() * 64);
 }
 
+Field.prototype.drawGrass = function (cell) {
+    let grass = document.createElement('img');
+    grass.className='grass';
+    grass.setAttribute("src", "../Sapper/img/grass.svg" );
+    cell.appendChild(grass);
+    cell.classList.toggle("safeCell")
+}
 
+Field.prototype.drawBomb = function (cell) {
+    let bomb = document.createElement('img');
+    bomb.className='bomb';
+    bomb.setAttribute("src", "../Sapper/img/bomb.svg" );
+    cell.appendChild(bomb); 
+    cell.classList.toggle("safeCell")
+}
 
-
-
-
+Field.prototype.drawNeigbourNumber = function (cell) {
+    let count = document.createElement('div');
+    count.className = 'count';
+    count.innerHTML = cell.getAttribute('count');
+    cell.appendChild(count);
+    cell.classList.toggle("safeCell")
+}

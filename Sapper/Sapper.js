@@ -72,7 +72,7 @@ Sapper.prototype.checkCell = function(cell){
         return 
     }
     //else второй вариант для паузы всех ячеек.
-    this._fullField.draw(cell, !this._bombs.includes(parseInt(cell.getAttribute("data-index"))));
+    this.draw(cell, !this._bombs.includes(parseInt(cell.getAttribute("data-index"))));
 
 
     // alert(cell.getAttribute("data-index"));
@@ -84,7 +84,7 @@ Sapper.prototype.checkNeighbours = function () {
         arrNeigbours.forEach(indexNeighbour => {
             if (indexNeighbour >= 0 && indexNeighbour <= 63
                 && !this.checkLeftBorderNeighbour(index, indexNeighbour) && !this.checkRightBorderNeighbour(index, indexNeighbour)){
-                this.checkNeighboursCount (indexNeighbour);
+                this.checkNeighboursCount(indexNeighbour);
             }
         })
 
@@ -117,6 +117,55 @@ Sapper.prototype.checkRightBorderNeighbour = function (index, indexNeighbour){
     }
     return false
 }
+
+Sapper.prototype.draw = function(cell, grass) {
+    if (grass === true){
+        if (cell.getAttribute('count') === null){
+            this.grassEmptyNeighbours(cell);
+        } else {
+            this._fullField.drawNeigbourNumber(cell);
+        }
+    }else {
+        this._fullField.drawBomb(cell);
+    }
+}
+
+Sapper.prototype.grassEmptyNeighbours = function(cell){
+    this._fullField.drawGrass(cell);
+    let index = parseInt(cell.getAttribute('data-index'));
+    
+    // Draw EmptyGrass
+    let arrGrassNeigbours = [index-1, index+1, index-8, index+8];
+    for (let i=0; i<arrGrassNeigbours.length; i++){
+        if (arrGrassNeigbours[i]< 0 || arrGrassNeigbours[i]>63 || this.checkLeftBorderNeighbour(index,arrGrassNeigbours[i]) 
+        || this.checkRightBorderNeighbour(index,arrGrassNeigbours[i])){
+            continue
+        }
+        let allCells = document.querySelectorAll('.cross__board-item') // to do селектор по атрибуту.
+        if (!this._bombs.includes(arrGrassNeigbours[i]) 
+        && allCells[arrGrassNeigbours[i]].getAttribute('count') === null){
+            if (allCells[arrGrassNeigbours[i]].firstChild) {
+                continue;
+            }
+            this.grassEmptyNeighbours(allCells[arrGrassNeigbours[i]]);
+        }
+    }
+    //Draw Grass with count > 0
+    let arrNeigbours = [index - 9, index - 8,index - 7, index - 1,index + 9, index + 8,index + 7, index + 1]
+    arrNeigbours.forEach(indexNeighbour => {
+        if (indexNeighbour >= 0 && indexNeighbour <= 63
+            && !this.checkLeftBorderNeighbour(index, indexNeighbour) && !this.checkRightBorderNeighbour(index, indexNeighbour)){
+            let cellNeighbours = document.querySelectorAll('.cross__board-item') //to do селектор по атрибуту.
+            if (!this._bombs.includes(indexNeighbour) && cellNeighbours[indexNeighbour].getAttribute('count') !== null 
+                && !cellNeighbours[indexNeighbour].firstChild){
+                this._fullField.drawNeigbourNumber(cellNeighbours[indexNeighbour]);    
+            }
+        }
+    })
+}
+
+
+
 
 // (2)
 // Sapper.prototype.checkCell = function(){
