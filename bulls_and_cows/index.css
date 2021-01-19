@@ -96,7 +96,7 @@
 }
 
 table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-family: 'Montserrat', Sans-Serif;
     font-size: 14px;
     border-collapse: collapse;
     text-align: center;
@@ -114,3 +114,8 @@ table {
     td {
     background: #ffe0b3;
     }
+
+.line_1 {
+    height: 40px;
+}
+

@@ -101,6 +101,7 @@ BullsAndCows.prototype.createInputNumber = function (){
     let createInput = document.createElement('input')
     createInput.setAttribute('size',2);
     createInput.setAttribute('maxlength',4)
+    // createInput.setAttribute('autofocus',0)
     // createInput.setAttribute('pattern','[0-9]{4}') // Разобраться с данным свойством немного позже. 
     createInput.addEventListener('keypress', (event) => {
         if (event.keyCode ===13) {
@@ -109,23 +110,25 @@ BullsAndCows.prototype.createInputNumber = function (){
             if (this.verification(createInput.value)) {
                 createInput.setAttribute('disabled','disabled')
                 this.checkBullsAndCows(createInput.value);
-                this._currentTurn++;
                 if (this._winGame){
-                    alert('Ты выиграл(а)')
+                    alert('You win')
                     this.render();
-                } else if (this._currentTurn===10){
+                } else if (this._currentTurn===9){
                     alert('Ты нубас')
+                    this.render();
                 }
                 else {
+                    this._currentTurn++;
                     this.createInputNumber();
                 }
-
             } else {
                 alert('У вас повторяються цыфры. \n"1234" => Правильно, \n"1123" =>  Не верно. В данном случае дважди повторилось "1 и 1"')
             }
         }
     });
-    cellNumberTd.append(createInput)
+
+    cellNumberTd.append(createInput);
+    createInput.focus();
 }
 
 
@@ -140,6 +143,8 @@ BullsAndCows.prototype.fieldClean = function() {
         cleanBull.innerHTML = '';
         let cleanCow = document.querySelector('.cow_'+i);
         cleanCow.innerHTML = '';
+        let cleanRandomNumber = document.querySelector('.random__number')
+        cleanRandomNumber.innerHTML = '';
     }
     this._props.container.innerText = '';
 }
