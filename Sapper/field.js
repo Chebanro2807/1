@@ -43,7 +43,7 @@ Field.prototype.createRandomForBombs = function(max) { // С помощью push
 }
 
 Field.prototype.randomFieldIndex = function() {
-    return Math.round(Math.random() * 64);
+    return Math.round(Math.random() * 63);
 }
 
 Field.prototype.drawGrass = function (cell) {
