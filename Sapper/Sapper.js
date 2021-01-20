@@ -12,6 +12,7 @@ function Sapper(props = {}) {
     this._actionsEl = {
         start: this._props.container.querySelector('.actions__start'),
         pause: this._props.container.querySelector('.actions__pause'),
+        slider: this._props.container.querySelector('#size')
         // reset: this._props.container.querySelector('.actions__reset')
     };
     this._cells = this._props.container.querySelectorAll('.cross__board-item')
@@ -23,23 +24,23 @@ function Sapper(props = {}) {
     this._actionsEl.pause.addEventListener('click', this.pause.bind(this));
     this._actionsEl.pause.setAttribute("disabled", "disabled")
     // this._actionsEl.reset.addEventListener('click', this.reset.bind(this));
-}
-
-Sapper.prototype.bomb = function() {
-
+    this._counter = 0;
+    this._actionsEl.slider.addEventListener("input",()=>{
+        this._actionsEl.slider.setAttribute('title',this._actionsEl.slider.value)
+        this._props.container.querySelector('#text').value = this._actionsEl.slider.value;
+    })
 }
 
 Sapper.prototype.start = function() {
+    this._counter = 0;
     this._fullField.fieldClean()
     // console.log('start')
     this._fullGameTimer.start()
     this.checkPause()
     this._actionsEl.pause.removeAttribute("disabled")
-
     this._bombs = this._fullField.createRandomForBombs(document.getElementById("size").value)
     console.log(this._bombs)
     this.checkNeighbours();
-    
 };
 
 Sapper.prototype.pause = function() {
@@ -60,6 +61,10 @@ Sapper.prototype.checkPause = function(){
 //(1)
 Sapper.prototype.checkCell = function(cell){
     // console.log(cell.getAttribute("data-index"));
+    if (this._fullGameTimer._state.started === false){
+        alert('Please, press "Start new game".')
+        return 
+    }
     if (this._fullGameTimer._state.pause === true){
         alert('Resume the game')
         return  // Принудительное завершение функции. Все что ниже игнорируеться. 
@@ -67,15 +72,10 @@ Sapper.prototype.checkCell = function(cell){
     if (cell.classList.contains("safeCell")){ // Если класс safeCell есть то в данную ячейку мы больше ничего не добавляем. 
         return 
     }
-    if (this._fullGameTimer._state.started === false){
-        alert('Please, press "Start new game".')
-        return 
-    }
+
     //else второй вариант для паузы всех ячеек.
     this.draw(cell, !this._bombs.includes(parseInt(cell.getAttribute("data-index"))));
-
-
-    // alert(cell.getAttribute("data-index"));
+     // alert(cell.getAttribute("data-index"));
 }
 
 Sapper.prototype.checkNeighbours = function () {
@@ -92,12 +92,12 @@ Sapper.prototype.checkNeighbours = function () {
 }
 
 Sapper.prototype.checkNeighboursCount = function (neighbour) {
-    let cells = document.querySelectorAll('.cross__board-item') // to do сделать с помощью селектора по атрибуту
+    let cell = document.querySelector('.cross__board-item[data-index="'+neighbour+'"]') // to do сделать с помощью селектора по атрибуту
     // console.log("neighbour="+cells[index-9]);
-    if (cells[neighbour].getAttribute('count') === null){
-        cells[neighbour].setAttribute('count',0);
+    if (cell.getAttribute('count') === null){
+        cell.setAttribute('count',0);
     }
-    cells[neighbour].setAttribute('count', parseInt(cells[neighbour].getAttribute('count'))+1)
+    cell.setAttribute('count', parseInt(cell.getAttribute('count'))+1)
 }
 
 Sapper.prototype.checkLeftBorderNeighbour = function (index, indexNeighbour){
@@ -124,14 +124,30 @@ Sapper.prototype.draw = function(cell, grass) {
             this.grassEmptyNeighbours(cell);
         } else {
             this._fullField.drawNeigbourNumber(cell);
+            this._counter++;
+        } 
+        if (this._counter === (64-this._bombs.length)){
+            alert ('You win!')
+            this.endGame();
         }
-    }else {
-        this._fullField.drawBomb(cell);
+    } else {
+        cell.classList.add('red_bomb')
+        this._bombs.forEach(index => {
+            // let allBombs = document.querySelectorAll('.cross__board-item') // to do селектор по атрибуту.
+            let bomb = document.querySelector('.cross__board-item[data-index="'+index+'"]') // .cross__board-item[data-index="27"]
+            this._fullField.drawBomb(bomb);
+            
+            // console.log("Was: ", allBombs[index]);
+            // console.log("Is: ", bomb);
+        })
+        alert ("You lose!");
+        this.endGame();
     }
 }
 
 Sapper.prototype.grassEmptyNeighbours = function(cell){
     this._fullField.drawGrass(cell);
+    this._counter++;
     let index = parseInt(cell.getAttribute('data-index'));
     
     // Draw EmptyGrass
@@ -141,13 +157,13 @@ Sapper.prototype.grassEmptyNeighbours = function(cell){
         || this.checkRightBorderNeighbour(index,arrGrassNeigbours[i])){
             continue
         }
-        let allCells = document.querySelectorAll('.cross__board-item') // to do селектор по атрибуту.
+        let cellNeigbour = document.querySelector('.cross__board-item[data-index="'+arrGrassNeigbours[i]+'"]') // to do селектор по атрибуту. - FIXED
         if (!this._bombs.includes(arrGrassNeigbours[i]) 
-        && allCells[arrGrassNeigbours[i]].getAttribute('count') === null){
-            if (allCells[arrGrassNeigbours[i]].firstChild) {
+        && cellNeigbour.getAttribute('count') === null){
+            if (cellNeigbour.firstChild) {
                 continue;
             }
-            this.grassEmptyNeighbours(allCells[arrGrassNeigbours[i]]);
+            this.grassEmptyNeighbours(cellNeigbour);
         }
     }
     //Draw Grass with count > 0
@@ -155,14 +171,21 @@ Sapper.prototype.grassEmptyNeighbours = function(cell){
     arrNeigbours.forEach(indexNeighbour => {
         if (indexNeighbour >= 0 && indexNeighbour <= 63
             && !this.checkLeftBorderNeighbour(index, indexNeighbour) && !this.checkRightBorderNeighbour(index, indexNeighbour)){
-            let cellNeighbours = document.querySelectorAll('.cross__board-item') //to do селектор по атрибуту.
-            if (!this._bombs.includes(indexNeighbour) && cellNeighbours[indexNeighbour].getAttribute('count') !== null 
-                && !cellNeighbours[indexNeighbour].firstChild){
-                this._fullField.drawNeigbourNumber(cellNeighbours[indexNeighbour]);    
+            let cellNeighbour = document.querySelector('.cross__board-item[data-index="'+indexNeighbour+'"]') //to do селектор по атрибуту.  - FIXED
+            if (!this._bombs.includes(indexNeighbour) && cellNeighbour.getAttribute('count') !== null 
+                && !cellNeighbour.firstChild){
+                this._fullField.drawNeigbourNumber(cellNeighbour); 
+                this._counter++;   
             }
         }
     })
 }
+
+Sapper.prototype.endGame = function(){
+    this._fullGameTimer.pause();
+    this._actionsEl.pause.setAttribute("disabled", "disabled")
+}
+
 
 
 

@@ -21,6 +21,7 @@ Field.prototype.fieldClean = function() {
     arr.forEach(function(cell){
         cell.classList.remove("safeCell") // Мы убираем данный клас кажды раз когда заново создаем новую игру.
         cell.removeAttribute("count")
+        cell.classList.remove('red_bomb')
         while (cell.firstChild) {
             cell.removeChild(cell.firstChild); // Очищаем поля от картинок бомб.
         }        
@@ -33,7 +34,7 @@ Field.prototype.createRandomForBombs = function(max) { // С помощью push
         let bompIndex = this.randomFieldIndex();  // Сгенерировали индекс ячейки для бомбы.
         // console.log(bompIndex);
         if (arr.includes(bompIndex)){
-            console.log(bompIndex)
+            //console.log(bompIndex)
             i--;
         } else {
             arr.push(bompIndex) // Добавили значения инфдексов в масив. 
@@ -59,7 +60,6 @@ Field.prototype.drawBomb = function (cell) {
     bomb.className='bomb';
     bomb.setAttribute("src", "../Sapper/img/bomb.svg" );
     cell.appendChild(bomb); 
-    cell.classList.toggle("safeCell")
 }
 
 Field.prototype.drawNeigbourNumber = function (cell) {
