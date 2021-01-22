@@ -1,0 +1,67 @@
+.emulator {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+table {
+    text-align: center;
+    border: 1px solid grey;
+ }
+
+th, td {
+    text-align: center;
+    border: 1px solid grey;
+    height: 40px;
+    width: 100px;
+}
+
+.main_body {
+    display: flex;
+    flex-wrap:nowrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.floors_wrap ,.lift_a_wrap, .lift_b_wrap, .lift_c_wrap ,.on_the_street {
+    margin-left: 15px;
+}
+
+.waiting_people{
+    height: 20px;
+    width: 20px;
+}
+
+.floors td{
+    width: 200px;
+}
+
+.on_the_street th{ 
+    width: 100%;
+    text-align: center;
+}
+
+.elevator {
+    height: 20px;
+}
+
+.on_the_street {
+    align-self: flex-end;
+}
+
+.mine {
+    visibility: hidden;
+}
+
+.floor_number{
+    height: 18px;
+    margin-bottom: 0px;
+}
+
+.waiting_people_floor10 {
+    height: 20px;
+}
+
+.street{
+    width: 100px;
+}
