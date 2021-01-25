@@ -5,16 +5,15 @@ function Body (props={}){
         this._floor[i].addEventListener('click',() => this.addMan(this._floor[i]))
     }
     
-    const elevatorA = new Elevator ({
+    elevatorA = new Elevator ({
         container: document.querySelector('.lift_a_wrap')
     }, {
         thName: "Первый лифт",
         checkClass: 'lift_a',
-        location: 7,
-        cabin: this.drawCabin(1)
+        location: 7
     });
     
-    const elevatorB = new Elevator ({
+    elevatorB = new Elevator ({
         container: document.querySelector('.lift_b_wrap')
     }, {
         thName: "Второй лифт",
@@ -22,19 +21,16 @@ function Body (props={}){
         location: 5
     });
     
-    const elevatorC = new Elevator ({
+    elevatorC = new Elevator ({
         container: document.querySelector('.lift_c_wrap')
     }, {
         thName: "Третий лифт",
         checkClass: 'lift_c'
     });
-    
-    elevatorA.move(7, 3, this.drawCabin(1));
-    
-    elevatorB.move(5, 10, this.drawCabin(3));
-    
-    elevatorC.move(0, 10, this.drawCabin(3));
-    
+
+    this._elevators = [elevatorA, elevatorB, elevatorC]
+    this._floorsArr = [];
+
 }
 
 Body.prototype.addMan = function(floor) {
@@ -43,6 +39,10 @@ Body.prototype.addMan = function(floor) {
     let count = addOnFloor.querySelectorAll('img').length;
     if (count < 5){
         addOnFloor.append(this.addManDrow());
+        if (!this._floorsArr.includes(floor.getAttribute('data-index'))) {
+            this._floorsArr.push(floor.getAttribute('data-index'));
+        }
+        console.log(this._floorsArr);
     }
     else alert("Сдесь живет всего 5 человек.")
 }
@@ -63,6 +63,21 @@ Body.prototype.drawCabin = function (countMan){
     return cabin
 }
 
+Body.prototype.controller = function (){
+    this._updateIntervalId = setInterval (this.checkStates.bind(this), 1000)
+}
+
+Body.prototype.checkStates = function () {
+    this._elevators.forEach(elevator => {
+        if (elevator.isInMove()){
+            // console.log(elevator._description.thName, " is moving to ")
+        } else if (elevator.isManIn())  {
+            // console.log("Входят");
+        } else if (elevator.isFreeElevator()) {
+            elevator.move(10, this.drawCabin(0))
+        }
+    });
+}
 
 
 

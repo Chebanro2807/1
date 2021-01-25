@@ -1,8 +1,12 @@
 function Elevator (props={}, description={}){
     this._props = props;
     this._description = description;
-    this.initFloors();  
+    this.initFloors();
+    this._listOfStates = new Map([['inMove', 0], ['manIn', 1], ['manOut', 2], ['freeElevator', 3], ['notFullElevator', 4]]);
+    this.setFreeElevator();
 }
+
+
 
 Elevator.prototype.initFloors = function(){
     let createTable = document.createElement('table');
@@ -14,31 +18,35 @@ Elevator.prototype.initFloors = function(){
     createTable.append(createNameTr);
     createNameTr.append(createNameTh);
 
-    let location = (this._description.location) ? this._description.location : 0;
+    this.location = (this._description.location) ? this._description.location : 0;
 
     for (let i=10; i>=0; i--) {
         let createLiftTunnelTr = document.createElement('tr');
         let createLiftTunnelTd = document.createElement('td');
         createLiftTunnelTd.setAttribute('data-index',i)
-        if (location != i) {
+        if (this.location != i) {
             createLiftTunnelTd.className = "mine";
-        } else {
+        } /*else {
             if (this._description.cabin) {
                 createLiftTunnelTd.append(this._description.cabin)
             }
-        }
+        }*/
         createTable.append(createLiftTunnelTr);
         createLiftTunnelTr.append(createLiftTunnelTd);
     }
 }
 
-Elevator.prototype.move = function(currentFloor, targetFloor, cabin) {
+Elevator.prototype.move = function( targetFloor, cabin) {
+    let currentFloor = this.location;
+    this.setInMove();
     let delta = (currentFloor > targetFloor) ? -1 : 1;
-    for (let i=0; i + currentFloor != targetFloor; i += delta){
+    let i=0;
+    for (; i + currentFloor != targetFloor; i += delta){
         // console.log("animation ", i+currentFloor, " -> ", currentFloor+i+delta)
         // this.render(currentFloor+i,currentFloor+i+delta);
         setTimeout(this.render.bind(this), 1000*(Math.abs(i+delta)), currentFloor+i, currentFloor+i+delta, cabin)
     }
+    setTimeout(this.setManIn.bind(this), 1000*(Math.abs(i+delta)))
 }
 
 Elevator.prototype.render = function(currentFloor, nextFloor, cabin){
@@ -53,4 +61,42 @@ Elevator.prototype.render = function(currentFloor, nextFloor, cabin){
     nextFloorEl.classList.remove('mine');
 }
 
+Elevator.prototype.isInMove = function (){
+    return this._state === this._listOfStates.get('inMove');
+}
 
+Elevator.prototype.isManIn = function(){
+    return this._state === this._listOfStates.get('manIn');
+}
+
+Elevator.prototype.isManOut = function (){
+    return this._state === this._listOfStates.get('manOut');
+}
+
+Elevator.prototype.isFreeElevator = function(){
+    return this._state === this._listOfStates.get('freeElevator');
+}
+
+Elevator.prototype.isNotFullElevator = function(){
+    return this._state === this._listOfStates.get('notFullElevator');
+}
+
+Elevator.prototype.setInMove = function (){
+    this._state = this._listOfStates.get('inMove');
+}
+
+Elevator.prototype.setManIn = function (){
+    this._state = this._listOfStates.get('manIn');
+}
+
+Elevator.prototype.setManOut = function (){
+    this._state = this._listOfStates.get('manOut');
+}
+
+Elevator.prototype.setFreeElevator = function (){
+    this._state = this._listOfStates.get('freeElevator');
+}
+
+Elevator.prototype.setNotFullElevator = function (){
+    this._state = this._listOfStates.get('notFullElevator');
+}
