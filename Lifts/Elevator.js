@@ -49,13 +49,11 @@ Elevator.prototype.move = function( targetFloor, cabin, unload) {
 }
 
 Elevator.prototype.render = function(currentFloor, nextFloor, cabin){
-    console.log(">", currentFloor,"-", nextFloor);
     let currentFloorEl = this._props.container.querySelector('td[data-index="'+currentFloor+'"]');
     let nextFloorEl = this._props.container.querySelector('td[data-index="'+nextFloor+'"]');
     while (currentFloorEl.firstChild){
         currentFloorEl.removeChild(currentFloorEl.firstChild)
     }
-    console.log("here");
     currentFloorEl.classList.add('mine');
     nextFloorEl.append(cabin);
     nextFloorEl.classList.remove('mine');
