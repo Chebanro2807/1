@@ -36,29 +36,30 @@ Elevator.prototype.initFloors = function(){
     }
 }
 
-Elevator.prototype.move = function( targetFloor, cabin) {
+Elevator.prototype.move = function( targetFloor, cabin, unload) {
     let currentFloor = this.location;
     this.setInMove();
     let delta = (currentFloor > targetFloor) ? -1 : 1;
     let i=0;
     for (; i + currentFloor != targetFloor; i += delta){
         // console.log("animation ", i+currentFloor, " -> ", currentFloor+i+delta)
-        // this.render(currentFloor+i,currentFloor+i+delta);
         setTimeout(this.render.bind(this), 1000*(Math.abs(i+delta)), currentFloor+i, currentFloor+i+delta, cabin)
     }
-    setTimeout(this.setManIn.bind(this), 1000*(Math.abs(i+delta)))
+    (unload) ? setTimeout(this.setManOut.bind(this), 1000*(Math.abs(i+delta))): setTimeout(this.setManIn.bind(this), 1000*(Math.abs(i+delta)));
 }
 
 Elevator.prototype.render = function(currentFloor, nextFloor, cabin){
+    console.log(">", currentFloor,"-", nextFloor);
     let currentFloorEl = this._props.container.querySelector('td[data-index="'+currentFloor+'"]');
     let nextFloorEl = this._props.container.querySelector('td[data-index="'+nextFloor+'"]');
-    /*while (currentFloorEl.firstChild){
-        console.log(currentFloorEl)
-        currentFloorEl.remove(currentFloorEl.firstChild)
-    }*/
+    while (currentFloorEl.firstChild){
+        currentFloorEl.removeChild(currentFloorEl.firstChild)
+    }
+    console.log("here");
     currentFloorEl.classList.add('mine');
     nextFloorEl.append(cabin);
     nextFloorEl.classList.remove('mine');
+    this.location = nextFloor;
 }
 
 Elevator.prototype.isInMove = function (){
@@ -99,4 +100,23 @@ Elevator.prototype.setFreeElevator = function (){
 
 Elevator.prototype.setNotFullElevator = function (){
     this._state = this._listOfStates.get('notFullElevator');
+}
+
+Elevator.prototype.drawManInTheCabin = function(cabin) {
+    let currentCabin = this._props.container.querySelector('td[data-index="'+this.location+'"]');
+    currentCabin.append(cabin);
+    // console.log(currentCabin)
+}
+
+Elevator.prototype.countMansInTheCabin = function (){
+    let manInTheCabin = this._props.container.querySelector('td[data-index="'+this.location+'"]');
+    let allImgInCabbin = manInTheCabin.querySelectorAll('img')
+    return allImgInCabbin.length
+}
+
+Elevator.prototype.cleanTheCabine = function(){
+    let manInTheCabin = this._props.container.querySelector('td[data-index="'+this.location+'"]');
+    while(manInTheCabin.firstChild){
+        manInTheCabin.removeChild(manInTheCabin.firstChild)
+    }
 }
