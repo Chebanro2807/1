@@ -101,6 +101,7 @@ Elevator.prototype.setNotFullElevator = function (){
 }
 
 Elevator.prototype.drawManInTheCabin = function(cabin) {
+    this.cleanTheCabine();
     let currentCabin = this._props.container.querySelector('td[data-index="'+this.location+'"]');
     currentCabin.append(cabin);
     // console.log(currentCabin)
